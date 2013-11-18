@@ -13,6 +13,10 @@ module SimpleSSH
       @code, @sig, @out, @err = code, sig, out, err
     end
 
+    def signal?
+      @sig != ""
+    end
+
     def stdout
       @out
     end
