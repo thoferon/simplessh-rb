@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    simplessh-rb (1.0.0)
+      ffi
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ffi (1.9.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  simplessh-rb!
