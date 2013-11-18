@@ -29,6 +29,7 @@ module SimpleSSH
   end
 
   def self.with_session_key(hostname, username, opts = {}, &block)
+    port        = opts[:port] || 22
     passphrase  = opts[:passphrase]  || ""
     public_key  = opts[:public_key]  || File.join(Dir.home, ".ssh", "id_rsa.pub")
     private_key = opts[:private_key] || File.join(Dir.home, ".ssh", "id_rsa")
