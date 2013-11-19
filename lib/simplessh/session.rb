@@ -1,5 +1,7 @@
 module SimpleSSH
   class Session
+    include SimpleSSH::Helpers
+
     def self.from_pointer(pointer)
       self.new(pointer)
     end
@@ -38,6 +40,24 @@ module SimpleSSH
       end
       SimpleSSH::Foreign.free_either_count(either_pointer)
       either_count
+    end
+
+    def send_directory(source, target)
+      exec_command("mkdir -m #{file_mode(source).to_s(8)} #{target}").flat_map do |dir_creation_res|
+        if dir_creation_res.success?
+          Dir.open(source).reject { |p| p == '.' || p == '..' }.reduce(SimpleSSH::Either.return(nil)) do |prev, name|
+            local_path  = File.join(source, name)
+            remote_path = "#{target}/#{name}"
+            if File.file? local_path
+              prev.flat_map { |_| send_file(file_mode(local_path), local_path, remote_path) }
+            else
+              prev.flat_map { |_| send_directory(local_path, remote_path) }
+            end
+          end
+        else
+          SimpleSSH::Either::Left.new :could_not_create_directory
+        end
+      end.flat_map { |_| SimpleSSH::Either.return nil }
     end
 
     def close

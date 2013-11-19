@@ -1,3 +1,4 @@
+require 'simplessh/helpers'
 require 'simplessh/foreign'
 require 'simplessh/either'
 require 'simplessh/session'

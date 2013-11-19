@@ -3,7 +3,7 @@ module SimpleSSH
     attr_reader :val
 
     def self.return(val)
-      self.new val
+      Right.new val
     end
 
     def initialize(val)

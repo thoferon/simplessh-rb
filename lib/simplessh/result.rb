@@ -13,6 +13,10 @@ module SimpleSSH
       @code, @sig, @out, @err = code, sig, out, err
     end
 
+    def success?
+      not signal? && @exit_code == 0
+    end
+
     def signal?
       not @sig.nil?
     end
