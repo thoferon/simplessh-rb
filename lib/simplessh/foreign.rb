@@ -24,5 +24,7 @@ module SimpleSSH
     attach_function :exit_code, :simplessh_get_exit_code, [:pointer], :int
     attach_function :exit_signal, :simplessh_get_exit_signal, [:pointer], :string
     attach_function :count, :simplessh_get_count, [:pointer], :int
+
+    attach_function :free, :simplessh_free, [:pointer], :void
   end
 end

@@ -23,7 +23,7 @@ module SimpleSSH
 
     def self.from_pointer!(pointer, &block)
       result = self.from_pointer(pointer, &block)
-      pointer.free
+      SimpleSSH::Foreign.free pointer
       result
     end
 

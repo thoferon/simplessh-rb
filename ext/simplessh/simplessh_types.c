@@ -61,3 +61,8 @@ char *simplessh_get_exit_signal(struct simplessh_result *result) {
 int simplessh_get_count(int *ptr) {
   return *ptr;
 }
+
+// Just to make FFI shut up
+void simplessh_free(void *ptr) {
+  free(ptr);
+}

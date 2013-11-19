@@ -57,4 +57,6 @@ char *simplessh_get_exit_signal(struct simplessh_result*);
 
 int simplessh_get_count(int*);
 
+void simplessh_free(void*);
+
 #endif
