@@ -14,7 +14,7 @@ module SimpleSSH
     end
 
     def signal?
-      @sig != ""
+      not @sig.nil?
     end
 
     def stdout
@@ -26,7 +26,7 @@ module SimpleSSH
     end
 
     def exit
-      @sig == "" ? @code : @sig
+      signal? ? @sig : @code
     end
   end
 end
