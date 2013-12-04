@@ -47,7 +47,10 @@ module SimpleSSH
 
       exec_command("mkdir -m #{file_mode(source).to_s(8)} #{target}").flat_map do |dir_creation_res|
         if dir_creation_res.success?
-          Dir.open(source).reject { |p| p == '.' || p == '..' }.reduce(SimpleSSH::Either.return(nil)) do |prev, name|
+          Dir.open(source)
+            .reject { |p| p == '.' || p == '..' }
+            .reduce(SimpleSSH::Either.return(nil)) do |prev, name|
+
             local_path  = File.join(source, name)
             remote_path = "#{target}/#{name}"
 
