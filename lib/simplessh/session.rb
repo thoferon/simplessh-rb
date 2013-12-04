@@ -55,7 +55,7 @@ module SimpleSSH
               if File.file? local_path
                 prev.flat_map { |s| send_file(file_mode(local_path), local_path, remote_path) }
               else
-                prev.flat_map { |_| send_directory(local_path, remote_path) }
+                prev.flat_map { |_| send_directory(local_path, remote_path, &block) }
               end
             else
               prev
