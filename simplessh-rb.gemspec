@@ -1,4 +1,4 @@
-Gem::Specification.new "simplessh-rb", "1.1.3" do |s|
+Gem::Specification.new "simplessh-rb", "1.1.4" do |s|
   s.summary     = "Ruby version of SimpleSSH"
   s.extensions  << "ext/simplessh/extconf.rb"
   s.authors     = ["Tom Feron"]
